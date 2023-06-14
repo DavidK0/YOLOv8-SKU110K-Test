@@ -19,3 +19,9 @@ YOLOv8-SKU110K-Test
 # Prepare_SKU110K.py #
 This script loads the SKU110k dataset and prepares it for input to YOLOv8. 500 images each for training/validation/testing are selected at random. The prepared dataset is put in a folder called SKU500.
 <br> Usage: `python ./Prepare_SKU110K.py`
+
+# Train_YOLOv8.py #
+After pre-processing the SKU110K data, run `python ./Train_YOLOv8.py` to test basic training and validation on YOLOv8.
+
+# Example #
+Look in the `runs` folder for and example validation done on the SKU110K data after one epoch of training.
