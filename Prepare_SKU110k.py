@@ -7,12 +7,21 @@ import csv
 import random
 import shutil
 
-# The location of the three data splits
-SKU110K_train = r"SKU110K_fixed\annotations\annotations_train.csv"
-SKU110K_val = r"SKU110K_fixed\annotations\annotations_val.csv"
-SKU110K_test = r"SKU110K_fixed\annotations\annotations_test.csv"
-SKU110K_images = r"SKU110K_fixed\images"
+# The location of the SKU110K dataset
+SKU110K = r"SKU110K_fixed"
+SKU110K_train = os.path.join(SKU110K, r"annotations\annotations_train.csv")
+SKU110K_val = os.path.join(SKU110K, r"annotations\annotations_val.csv")
+SKU110K_test = os.path.join(SKU110K, r"annotations\annotations_test.csv")
+SKU110K_images = os.path.join(SKU110K, r"images")
 
+# Output location
+output_directory = "datasets/SKU500"
+
+# The seed for randomizing the splits (None defaults to system time)
+random_seed = None
+random.seed(random_seed)
+
+# The number of images per split
 images_per_split = 500
 
 # This method takes a CSV containing annotations in the SKU110K format
@@ -23,15 +32,16 @@ def prepare_data_split(input_path, split_name):
         reader = csv.reader(file)
         data = list(reader)
 
-    # Set up the SKU500 directory
-    subdirectory = "SKU500"
-    os.makedirs(subdirectory, exist_ok=True)
-    split_path = os.path.join(subdirectory,split_name)
-    os.makedirs(split_path, exist_ok=True)
-    images_output = os.path.join(split_path,"images")
-    annotations_output = os.path.join(split_path,"annotations")
+    # Set up the output directory
+    os.makedirs(output_directory, exist_ok=True)
+    images_path = os.path.join(output_directory,"images")
+    labels_path = os.path.join(output_directory,"labels")
+    os.makedirs(images_path, exist_ok=True)
+    os.makedirs(labels_path, exist_ok=True)
+    images_output = os.path.join(images_path, split_name)
+    labels_output = os.path.join(labels_path,split_name)
     os.makedirs(images_output, exist_ok=True)
-    os.makedirs(annotations_output, exist_ok=True)
+    os.makedirs(labels_output, exist_ok=True)
 
     # Get unique image_names
     unique_image_names = list(set(row[0] for row in data))
@@ -56,7 +66,7 @@ def prepare_data_split(input_path, split_name):
         image_name = os.path.splitext(image_name)[0]
 
         # Create the text file for the annotations
-        annotations_output_path = os.path.join(split_path, "annotations", f"{image_name}.txt")
+        labels_output_path = os.path.join(labels_output, f"{image_name}.txt")
 
         # Check that the image exists in the SKU actually exists and copy it
         image_input_path = os.path.join(SKU110K_images, f"{image_name}.jpg")
@@ -67,7 +77,7 @@ def prepare_data_split(input_path, split_name):
         else:
             shutil.copy(image_input_path,image_output_path)
 
-        with open(annotations_output_path, "w") as file:
+        with open(labels_output_path, "w") as file:
             # Iterate over each object in the image
             for row in data:
                 # SKU-110k annotations are stored with the following format:
@@ -91,12 +101,23 @@ def prepare_data_split(input_path, split_name):
                 height /= float(row[7])
 
                 # Write the row to the file
-                file.write(f"0,{center_x},{center_y},{width},{height}\n")
+                file.write(f"0 {center_x} {center_y} {width} {height}\n")
 
-    print(f"{split_path} data created.")
+    print(f"{split_name} data created.")
 
 if __name__ == "__main__":
     # Prepare the train, dev, and test splits
     prepare_data_split(SKU110K_train,"train")
     prepare_data_split(SKU110K_val,"val")
     prepare_data_split(SKU110K_test,"test")
+
+    # Produce the YAML file
+    yaml_path = os.path.join("./", "SKU500.yaml")
+    with open(yaml_path, "w") as file:
+        file.write("path: SKU500")
+        file.write("\ntrain: images/train")
+        file.write("\nval: images/val")
+        file.write("\ntest: images/test")
+        file.write("\n")
+        file.write("\nnames:")
+        file.write("\n  0: object")
