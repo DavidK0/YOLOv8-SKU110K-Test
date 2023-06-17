@@ -4,7 +4,10 @@ In this repositoy I attempt to apply a YOLOv8 model on the SKU110K dataset. The 
 # Requirements #
 Install YOLOv8 via the ultralytics pip package: https://github.com/ultralytics/ultralytics  
 `pip install ultralytics`  
-  
+
+YOLOv8 uses Ray Tune for hyperparameter tuning. Install Ray Tune via the ultralytics pip package: https://docs.ray.io/en/latest/tune/index.html  
+`pip install -U ultralytics "ray[tune]"`
+
 Download the SKU110K dataset and place it in the root directory: https://github.com/eg4000/SKU110K_CVPR19  
   
 The root directory should look like this:
