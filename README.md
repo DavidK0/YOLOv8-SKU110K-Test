@@ -18,9 +18,8 @@ YOLOv8-SKU110K-Test
     ├── ...
 ```
 
-# Prepare_SKU110K.py #
-This script loads the SKU110k dataset and prepares it for input to YOLOv8. 500 images each for training/validation/testing are selected at random. The prepared dataset is put in a folder called SKU500.
-<br> Usage: `python ./Prepare_SKU110K.py`
+# Dataset Pre-processing #
+My oringinal intention was train a YOLOv8 model on the [Unitail-Det dataset](https://unitedretail.github.io/Unitail-Det/), however the object detection mode of YOLOv8 only supports axis-aligned bounding boxes and not the more flexible qraudrilaterals that Unitail-Det offers. Instead I used the parent dataset of Unitail-Det, [SKU110K](https://github.com/eg4000/SKU110K_CVPR19 ). To format the SKU110k dataset and prepare it for input to YOLOv8, use `python ./Prepare_SKU110K.py`. 500 images each for the training, validation, and testing splits are selected at random from the corresponding split in the original dataset. The prepared dataset is put in "src/datasets/SKU500" and its .yaml file is put in the repository root.
 
 # Train_YOLOv8.py #
 After pre-processing the SKU110K data, run `python ./Train_YOLOv8.py` to test basic training and validation on YOLOv8.
@@ -37,3 +36,5 @@ Instead, I performed my own hyperparameter tuning. I randomly searched 5(?) hype
 
 # Results #
 Here is where run the finalized model on the test set and report the results.
+
+# Conclusion #
