@@ -40,8 +40,8 @@ Instead, I performed my own hyperparameter tuning. I randomly searched 8 hyperpa
 |Class loss weight    |0.2 - 4    |1|
 
 
-# Results #
-The finalized model is the best model found during hyperparameter tuning. I evaluated the finalized model on the test set. The AP at different IoU thresholds is given below.
+# Testing and results Results #
+The finalized model is the best model found during hyperparameter tuning. I evaluated the finalized model on the test set using `python ./Test_YOLOv8.py`. The AP at different IoU thresholds is given below.
 |mAP50|.7|
 |mAP75|.6|
 |mAP50-95|.65|
