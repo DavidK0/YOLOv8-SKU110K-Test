@@ -9,10 +9,10 @@ Download the [SKU110K dataset](https://github.com/eg4000/SKU110K_CVPR19 ) and pl
 ```
 YOLOv8-SKU110K-Test  
     ├── README.md  
-    ├── Prepare_SKU110K.py
+    ├── Preprocess_SKU110K.py
     ├── Train_YOLOv8.py
+    ├── Test_YOLOv8.py
     ├── SKU110K_fixed/
-    ├── runs/
     ├── ...
 ```
 
