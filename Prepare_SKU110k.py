@@ -15,7 +15,7 @@ SKU110K_test = os.path.join(SKU110K, r"annotations\annotations_test.csv")
 SKU110K_images = os.path.join(SKU110K, r"images")
 
 # Output location
-output_directory = "datasets/SKU500"
+output_directory = "src/datasets/SKU500"
 
 # The seed for randomizing the splits (None defaults to system time)
 random_seed = None
@@ -121,3 +121,7 @@ if __name__ == "__main__":
         file.write("\n")
         file.write("\nnames:")
         file.write("\n  0: object")
+    
+    # For unknown reasons, Ultralytics does not work if there is not
+    #   a folder called "runs" in the repository root
+    os.makedirs("runs", exist_ok=True)
