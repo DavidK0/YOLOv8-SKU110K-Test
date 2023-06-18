@@ -5,9 +5,9 @@ import gc # Manual garbage collection is neccesary for hyperparameter tuning
 import random
 import time
 
-num_trials  = 15 # The number of trials to run
+num_trials  = 35 # The number of trials to run
 output_file = "hyperparameter_results.txt" # The file to store the search results to
-epochs_per_trial = 10
+epochs_per_trial = 20
 
 # This function returns a random point in the hyperparameter search space
 def get_random_hyperparameters():

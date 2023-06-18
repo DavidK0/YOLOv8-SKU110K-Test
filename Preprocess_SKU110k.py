@@ -21,12 +21,9 @@ output_directory = "src/datasets/SKU500"
 random_seed = None
 random.seed(random_seed)
 
-# The number of images per split
-images_per_split = 500
-
 # This method takes a CSV containing annotations in the SKU110K format
 #   and outputs 500 at random to the output folder
-def prepare_data_split(input_path, split_name):
+def prepare_data_split(input_path, split_name, images_in_split):
     # Load the CSV data:
     with open(input_path, "r") as file:
         reader = csv.reader(file)
@@ -47,7 +44,7 @@ def prepare_data_split(input_path, split_name):
     unique_image_names = list(set(row[0] for row in data))
 
     # Randomly select 500 image_names
-    selected_image_names = random.sample(unique_image_names, images_per_split)
+    selected_image_names = random.sample(unique_image_names, images_in_split)
 
     # Filter the data for selected image_names
     selected_data = [row for row in data if row[0] in selected_image_names]
@@ -107,9 +104,9 @@ def prepare_data_split(input_path, split_name):
 
 if __name__ == "__main__":
     # Prepare the train, dev, and test splits
-    prepare_data_split(SKU110K_train,"train")
-    prepare_data_split(SKU110K_val,"val")
-    prepare_data_split(SKU110K_test,"test")
+    prepare_data_split(SKU110K_train,"train", 400)
+    prepare_data_split(SKU110K_val,"val", 50)
+    prepare_data_split(SKU110K_test,"test", 50)
 
     # Produce the YAML file
     yaml_path = os.path.join("./", "SKU500.yaml")
