@@ -1,4 +1,5 @@
-# This script is in charge of training YOLOv8 model.
+# This script is in charge of hyperparameter tuning a YOLOv8 model.
+# It takes no arguments
 
 from ultralytics import YOLO
 import gc # Manual garbage collection is neccesary for hyperparameter tuning

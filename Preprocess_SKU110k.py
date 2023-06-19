@@ -1,6 +1,7 @@
 # This script loads the SKU110k dataset and prepares it for input to YOLOv8
 # 500 images each for training/validation/testing are selected at random
 # The prepared dataset is put in a folder called SKU500
+# This script takes no arguments.
 
 import os
 import csv
@@ -15,7 +16,7 @@ SKU110K_test = os.path.join(SKU110K, r"annotations\annotations_test.csv")
 SKU110K_images = os.path.join(SKU110K, r"images")
 
 # Output location
-output_directory = "src/datasets/SKU500"
+output_directory = "datasets/SKU500"
 
 # The seed for randomizing the splits (None defaults to system time)
 random_seed = None
