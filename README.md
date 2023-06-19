@@ -40,7 +40,7 @@ Instead, I performed my own hyperparameter tuning \(using `Train_YOLOv8.py`\). I
 |Class loss weight    |0.2 - 4    |0.57   |
 
 # Testing and Results #
-To finalize the model, I continued to train the best model from hyperparameter tuning for and additional 100 epochs \(using `Finalize_YOLOv8.py`\). I evaluated the finalized model on the test set using `Test_YOLOv8.py`. The AP (equivalent to mAP for one class) at different IoU thresholds is given below. 
+To finalize the model, I continued to train the best model from hyperparameter tuning for and additional 100 epochs \(using `Finalize_YOLOv8.py`\). I evaluated the finalized model on the test set using `Test_YOLOv8.py`. The AP (equivalent to mAP for one class) at different IoU thresholds is given below as well as the mean precision and mean recall.  
 |Metric|Score|
 |-------|-----|
 |AP50   |0.884|
@@ -48,6 +48,9 @@ To finalize the model, I continued to train the best model from hyperparameter t
 |AP50-95|0.503|
 |MP     |0.860|
 |MR     |0.754|
+
+The PR curve is given below.  
+<img src="https://github.com/DavidK0/YOLOv8-SKU110K-Test/assets/9288945/3310d2ab-124e-4b00-a8ac-db7906f61c19" alt="Alt Text" width="563" height="376">
 
 # Conclusion #
 In conculusion, I have shown that a YOLOv8 model can be trained to produce image detections for densely packed objects on the SKU110K dataset, demonstrating my ability to tackle real-world computer vision problems using deep learning algorithms. The SKU110K dataset was preprocessed and reformatted to suit the YOLOv8's input requirements. A few corrupt images were encountered in the dataset but they had minimal impact on training. Hyperparameter tuning was performed the best model was selected and further trained. The finalized model achieved a mAP50 score of 88.4% on the testing data.
