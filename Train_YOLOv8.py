@@ -78,7 +78,6 @@ if __name__ == "__main__":
 
         # Delete the model to free up memory
         del model
-        #del hyperparameters
         gc.collect()
 
     # Re-output the results of the best trial
