@@ -27,7 +27,7 @@ A standard evaluation metrics in computer vision problems is the mAP, which is t
 
 # Hyperparameter tuning #
 My first attempt at hyperparameter tuning was to use [Ray Tune](https://docs.ray.io/en/latest/tune/index.html), a hyperparameter tuning library with integration with YOLOv8. Unfortunately, I was unable to overcome a [techincal issue related to job creation](https://github.com/ray-project/ray/issues/21994).  
-Instead, I performed my own hyperparameter tuning by using `Train_YOLOv8.py`. I randomly searched 8 hyperparameter values and ran 35 trials, each up to 15 epochs long. 35 trials at 15 epochs each is not a very in-depth hyperparameter search, but it is enough to see the effects of the hyperparameters. Using CUDA on an Nvidia GeForce RTX 3060 hyperparameter tuning took 4.1 hours. The hyperparameters that I searched, their search ranges, and the best found values are listed below.  
+Instead, I performed my own hyperparameter tuning by using `Train_YOLOv8.py`. Starting with a pre-trained nano-sized YOLOv8 model, I randomly searched 8 hyperparameter values and ran 35 trials, each up to 15 epochs long. 35 trials at 15 epochs each is not a very in-depth hyperparameter search, but it is enough to see the effects of the hyperparameters. Using CUDA on an Nvidia GeForce RTX 3060 hyperparameter tuning took 4.1 hours. The hyperparameters that I searched, their search ranges, and the best found values are listed below.  
 |Parameter            |Range      |Best   |
 |---------------------|-----------|-------|
 |Initial learning rate|.00001 - .1|0.098  |
@@ -40,7 +40,7 @@ Instead, I performed my own hyperparameter tuning by using `Train_YOLOv8.py`. I 
 |Class loss weight    |0.2 - 4    |0.57   |
 
 # Testing and Results #
-To finalize the model, I continued to train the best model from hyperparameter tuning for and additional 100 epochs by using `Finalize_YOLOv8.py`. I evaluated the finalized model on the test set by using `Test_YOLOv8.py`. The AP (equivalent to mAP for one class) at different IoU thresholds is given below as well as the mean precision and mean recall.  
+To finalize the model, I continued to train the best model from hyperparameter tuning for and additional 100 epochs by using `Finalize_YOLOv8.py`. The weights file of the final model can be found at `Final-yolov5n.pt`. I evaluated the finalized model on the test set by using `Test_YOLOv8.py`. The AP (equivalent to mAP for one class) at different IoU thresholds is given below as well as the mean precision and mean recall.  
 |Metric|Score|
 |-------|-----|
 |AP50   |0.884|
