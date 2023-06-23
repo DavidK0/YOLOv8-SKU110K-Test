@@ -12,7 +12,7 @@ pip install -r requirements.txt  # install
 The script `v8_Speed_Test.py` is located in the repository root in order to make it work with YOLOv8.
 
 # Methods #
-I trained three YOLO models:
+I trained four YOLO models:
 * YOLOv8 nano (from yolo5n.pt)
 * YOLOv8 small (from yolo5s.pt)
 * YOLOv5 nano (from yolo5n.pt)
@@ -46,6 +46,6 @@ The PR curves for VOLOv8-nano, YOLOv8-small, VOLOv5-nano, and YOLOv5-small respe
 <img src="https://github.com/DavidK0/YOLOv8-SKU110K-Test/assets/9288945/3eeb49a6-3ea6-4dc6-88a0-9c483111b0bd" alt="YOLOv5-small  PR curve on SKU500 test split" width="284" height="188">
 
 # Discussion and Conclusion #
-The results above show that the latest model, YOLOv8, offers the highest performance in terms of mAP50 at the cost of speed. YOLOv8-nano had the highest with a score of 88.4%, although it comes in second place in terms of speed with a inference speed of 8.7 ms. YOLOv8-small did not outperform YOLOv8-nono, possibly due to the small size of the training data. The two YOLOv5 models had lower mAP50 scores than YOLOv8 but faster inference speeds. The larger YOLOv5 model, YOLOv5-small, had a mAP50 of 82% and an inference speed of 11.1. The smaller model, YOLOv5-nano, had a mAP50 of 79.7% and an inference speed of 7.9 ms, making it the model with the lowest average precision but fastest inference speed.
+The results above show that the latest model, YOLOv8, offers the highest performance in terms of mAP50 at the cost of speed. YOLOv8-nano had the highest with a score of 88.4%, although it comes in second place in terms of speed with a inference speed of 8.7 ms. YOLOv8-small did not outperform YOLOv8-nono, possibly due to the small size of the training data. YOLOv8-small had an mAP of 88.0% and the slowest inference time at 11.6 ms. The two YOLOv5 models had lower mAP50 scores than YOLOv8 but faster inference speeds. The larger YOLOv5 model, YOLOv5-small, had a mAP50 of 82% and an inference speed of 11.1. The smaller model, YOLOv5-nano, had a mAP50 of 79.7% and an inference speed of 7.9 ms, making it the model with the lowest average precision but fastest inference speed.
 
 In conclusion, my tests show that accuracy and speed is a trade-off within the YOLO family of models. YOLOv8 exhibits the hightest detection accuracy and decent inference speed, but not the fastest speed. YOLOv5 has comparatively fast inference speeds but worse accuracy. Within one version of YOLO, larger models yeild higher accuracy but slower inference speeds.
