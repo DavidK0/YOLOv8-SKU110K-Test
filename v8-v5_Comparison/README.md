@@ -9,6 +9,7 @@ git clone https://github.com/ultralytics/yolov5  # clone
 cd yolov5
 pip install -r requirements.txt  # install
 ```
+The script `v8_Speed_Test.py` is located in the repository root in order to make it work with YOLOv8.
 
 # Methods #
 I trained three YOLO models:
@@ -22,17 +23,21 @@ To find the inference speed for the YOLOv8 model I used Ultralytic's built-in va
 
 
 # Results #
-|Model       |mAP50|Precision |Recall|Inference Speed\(ms\)|FPS|
-|------------|-----|----------|------|---------------------|---|
-|YOLOv8-nano |88.4%|86.0%     |75.4% |                     |    
-|YOLOv5-nano |79.7%|86.0%     |69.5% |                     |
-|YOLOv5-small|82.0%|86.2%     |73.8% |                     |
+Each of the models are listed in the table below, along some evaluation metrics and speed metrics on the SKU500 test set.
+|Model       |mAP50|Precision |Recall|Inference Speed|FPS |
+|------------|-----|----------|------|---------------|----|
+|YOLOv8-nano |88.4%|86.0%     |75.4% |               |    |
+|YOLOv5-nano |79.7%|86.0%     |69.5% |               |    |
+|YOLOv5-small|82.0%|86.2%     |73.8% |11.09 ms       |90.2|
 
 The PR curves for VOLOv8-nano, VOLOv5-nano, and YOLOv5-small respectively are given below.
-<img src="https://github.com/DavidK0/YOLOv8-SKU110K-Test/assets/9288945/3310d2ab-124e-4b00-a8ac-db7906f61c19" alt=""YOLOv8-nano PR curve on SKU500 test split"" width="284" height="188">
+
+<img src="https://github.com/DavidK0/YOLOv8-SKU110K-Test/assets/9288945/3310d2ab-124e-4b00-a8ac-db7906f61c19" alt="YOLOv8-nano PR curve on SKU500 test split" width="284" height="188">
+
 <img src="https://github.com/DavidK0/YOLOv8-SKU110K-Test/assets/9288945/8f94cfa5-0d8b-4f02-9799-70d07a3389ae" alt="YOLOv5-nano PR curve on SKU500 test split" width="284" height="188">
-0K-Test/assets/9288945/8f94cfa5-0d8b-4f02-9799-70d07a3389ae" alt="YOLOv5-nano PR curve on SKU500 test split" width="284" height="188">
-<img src="https://github.com/DavidK0/YOLOv8-SKU110K-Test/assets/9288945/3eeb49a6-3ea6-4dc6-88a0-9c483111b0bd" alt=""YOLOv5-small  PR curve on SKU500 test split"" width="284" height="188">
+
+<img src="https://github.com/DavidK0/YOLOv8-SKU110K-Test/assets/9288945/3eeb49a6-3ea6-4dc6-88a0-9c483111b0bd" alt="YOLOv5-small  PR curve on SKU500 test split" width="284" height="188">
 
 # Discussion and Conclusion #
-\<insert summary\>
+The results above show that the latest model, YOLOv8, offers the highest performance in terms of mAP50 with a score of 88.4%. On the other hand, YOLOv8 also has the slowest inference time of . The two YOLOv5 models had lower mAP50 scores than YOLOv8 but faster inference speeds. The larger YOLOv5 model, YOLOv5-small, had a mAP50 of 82% and an inference of . The small model, YOLOv5-nano, had a mAP50 of 79.7% and an inference speed of 11.1 ms. 
+In conclusion, my tests show that accuracy and speed is a trade-off within the YOLO family of modles. YOLOv8 exhibits the hightest detectio naccuracy but the slowest inference speed. YOLOv5 flips that with comparatively fast inference speeds but worse accuracy. Within YOLOv5, larger models yeild higher accuracy but lower inference speeds.
