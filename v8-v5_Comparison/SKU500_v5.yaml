@@ -1,7 +1,0 @@
-train: ../../datasets/SKU500/images/train
-val: ../../datasets/SKU500/images/val
-test: ../../datasets/SKU500/images/test
-
-nc: 1
-
-names: ["object"]
