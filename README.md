@@ -1,5 +1,5 @@
 # SKU110K YOLOv8 Test #
-In this repositoy I attempt to apply a YOLOv8 model to the SKU110K dataset. The purpose of this is to demonstrate my ability to apply deep learning algorithms to real-world computer vision problems.
+In this repositoy I attempt to apply a YOLOv8 model to the SKU110K dataset. The purpose of this is to demonstrate my ability to apply deep learning algorithms to real-world computer vision problems. In [v8-v5_Comparison](https://github.com/DavidK0/YOLOv8-SKU110K-Test/tree/main/v8-v5_Comparison#v8-v5-comparison) I perform a speed and accuracy of a YOLOv8 model as well as a couple other YOLO models.
 
 # Requirements #
 Install [YOLOv8](https://github.com/ultralytics/ultralytics) via the ultralytics pip package:  
