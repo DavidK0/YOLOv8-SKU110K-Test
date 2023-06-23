@@ -1,9 +1,9 @@
-# This script calculates a YOLOv8's average inference time on the SKU500 dataset.
+# This script calculates a YOLOv5's average inference time on the SKU500 dataset.
 # It takes the exact same arguments as yolov5/val.py
 
 # Import val.py
 import sys
-sys.path.append('./yolov5')
+sys.path.append(r'.\yolov5')
 import val
 
 num_val_runs = 25 # The number of validation runs to take an average over
