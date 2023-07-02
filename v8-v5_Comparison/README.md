@@ -45,7 +45,23 @@ The PR curves for VOLOv8-nano, YOLOv8-small, VOLOv5-nano, and YOLOv5-small respe
 
 <img src="https://github.com/DavidK0/YOLOv8-SKU110K-Test/assets/9288945/3eeb49a6-3ea6-4dc6-88a0-9c483111b0bd" alt="YOLOv5-small  PR curve on SKU500 test split" width="284" height="188">
 
-# Discussion and Conclusion #
+# Discussion #
 The results above show that the latest model, YOLOv8, offers the highest performance in terms of mAP50 at the cost of speed. YOLOv8-nano had the highest with a score of 88.4%, although it comes in second place in terms of speed with a inference speed of 8.7 ms. YOLOv8-small did not outperform YOLOv8-nono, possibly due to the small size of the training data. YOLOv8-small had an mAP of 88.0% and the slowest inference time at 11.6 ms. The two YOLOv5 models had lower mAP50 scores than YOLOv8 but faster inference speeds. The larger YOLOv5 model, YOLOv5-small, had a mAP50 of 82% and an inference speed of 11.1. The smaller model, YOLOv5-nano, had a mAP50 of 79.7% and an inference speed of 7.9 ms, making it the model with the lowest average precision but fastest inference speed.
 
-In conclusion, my tests show that accuracy and speed is a trade-off within the YOLO family of models. YOLOv8 exhibits the hightest detection accuracy and decent inference speed, but not the fastest speed. YOLOv5 has comparatively fast inference speeds but worse accuracy. Within one version of YOLO, larger models yeild higher accuracy but slower inference speeds.
+I examined a few of the output labels assigned by the models during testing. The first thing I noticed is that the models tended to add extra bounding boxes, especially in the background. Sometimes this explainable by oddities in the data, for example in the image below we can see that in the true annotation, bounding boxes cuts off at an arbitrary depth from the camera. The models however continue to detect objects even as the shelves approach the background. Furthermore the larger models \(small\) produce more extra object detections than the smaller ones \(nano)\.
+
+<img src="https://github.com/DavidK0/YOLOv8-SKU110K-Test/assets/9288945/719dccbe-233c-4b0a-8296-b6942f3da73f" alt="Visualization 1" width="725" height="384">
+
+
+Another challenge for the models was objects that do not have a face squarly aligned with the shelves and clearly visible. In the image below there is a stack of cloths, but they are crumbled and slightly obscured. All the models struggle to identify them. In this case, the two large models do a worse job at identify the objects than the smaller models. Another trend that can be seen in the image below is that both sizes of YOLOv5 were more likely to produce overlapping bounding boxes.
+ 
+<img src="https://github.com/DavidK0/YOLOv8-SKU110K-Test/assets/9288945/6afd7270-59eb-42a6-aaa9-a334ee885713" alt="Visualization 2" width="732" height="270">
+
+
+In the image below are four example of annotations that were challenging for all the models. First, inconsitantly place annotations are annotations that cover only one item in a group of items, or that cover an item at the back of the shelf that normally would not be annotated. These are likely challenging because the model can not learn whether or not such items should be included. Secondly, items which are not products \(like signs\) are sometimes found on shelves which are often incorrectly identified as objects. Third, the annotations sometimes skip over some items or even entire shelves. In this case, all four models picked up on all the items on that shelf. Fourth, the annotations do not always cover the entire items, in which case the models produce larger bounding boxes than desired.
+
+<img src="https://github.com/DavidK0/YOLOv8-SKU110K-Test/assets/9288945/448c6de2-ba91-4881-b2c1-afa23732d207" alt="Visualization 3" width="432" height="358">
+
+# Conclusion #
+In conclusion, my tests show that accuracy and speed is a trade-off within the YOLO family of models. YOLOv8 exhibits the hightest detection accuracy and decent inference speed, but not the fastest speed. YOLOv5 has comparatively fast inference speeds but worse accuracy. Within one version of YOLO, larger models yeild higher accuracy but slower inference speeds. YOLOv8-small has a roughly 6 percentage point increase over YOLOv5-small while only dropping its inference time by about 0.5 ms, so although YOLOv8-small is slower, the cost is likely worth the performance gain. As for errors, YOLOv5 was more likely to produce overlapping bounding boxes, and larger models were more likely to detect objects in the background. Some other errors were common to both models and can be attributed to oddities in the dataset \(ex. depth-of-field cuttof, missing labels\).
+
